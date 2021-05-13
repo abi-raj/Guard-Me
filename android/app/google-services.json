@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "678010876379",
+    "project_id": "guardme-e63bb",
+    "storage_bucket": "guardme-e63bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678010876379:android:5ba0ac673820c828beb7fe",
+        "android_client_info": {
+          "package_name": "com.example.nearby"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678010876379-kc5v1l92rfjih8se611ka2c1k1ch9fig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nearby",
+            "certificate_hash": "be3f2b0303155b2feb95be142c158fa52fecfe2f"
+          }
+        },
+        {
+          "client_id": "678010876379-colv7nomquq3m95agogk1fe06lhsti17.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzXjI8t1WWZ7B3OEdC7AVb3zfOImoWG2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678010876379-colv7nomquq3m95agogk1fe06lhsti17.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
