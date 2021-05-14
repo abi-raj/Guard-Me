@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:nearby/fireb/fbHelper.dart';
 import 'package:nearby/helpers/dBHelper.dart';
 import 'package:nearby/models/prefsModel.dart';
 import 'package:nearby/screens/alert_screen.dart';
@@ -11,11 +13,14 @@ class HomeMainScreen extends StatefulWidget {
 }
 
 class _HomeMainScreenState extends State<HomeMainScreen> {
+  static const String positive =
+      'You are tested COVID POSITIVE\nPlease remain in ISOLATION !.';
   static const String netOn =
       'You are being monitered\nClick top icon to see alerts.';
   static const String netOff =
       'Turn on Internet to sync with alerts!.\nYou are being monitered';
   int todayCount = 0;
+  String mobile = '';
   @override
   void initState() {
     initToday();
@@ -61,16 +66,57 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
           stream: Connectivity().onConnectivityChanged,
           builder: (context, snapshot) {
             if (snapshot.data != ConnectivityResult.none) {
-              return Center(
-                // child: alertCard(mediaQuery, '', ''),
-                child: iconContainer(
-                  Icons.check_sharp,
-                  Colors.green,
-                  netOn,
-                  todayCount,
-                ),
-                // child:
-              );
+              return StreamBuilder<QuerySnapshot>(
+                  stream: userStream,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      var d = snapshot.data.docs;
+                      QueryDocumentSnapshot queryDocumentSnapshot;
+                      for (var doc in d) {
+                        if (doc.id == mobile) {
+                          queryDocumentSnapshot = doc;
+                          break;
+                        }
+                      }
+                      Map<dynamic, dynamic> status =
+                          queryDocumentSnapshot.data();
+                      var s = status['status'];
+                      bool sb = s == 'pos' ? true : false;
+                      if (sb) {
+                        return Center(
+                          // child: alertCard(mediaQuery, '', ''),
+                          child: iconContainer(
+                            Icons.dangerous,
+                            Colors.red,
+                            positive,
+                            todayCount,
+                          ),
+                          // child:
+                        );
+                      } else {
+                        return Center(
+                          // child: alertCard(mediaQuery, '', ''),
+                          child: iconContainer(
+                            Icons.check_sharp,
+                            Colors.green,
+                            netOn,
+                            todayCount,
+                          ),
+                          // child:
+                        );
+                      }
+                    }
+                    return Center(
+                      // child: alertCard(mediaQuery, '', ''),
+                      child: iconContainer(
+                        Icons.check_sharp,
+                        Colors.green,
+                        netOn,
+                        todayCount,
+                      ),
+                      // child:
+                    );
+                  });
             } else {
               return Center(
                 child: iconContainer(
@@ -93,7 +139,12 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
     );
   }
 
-  Widget iconContainer(IconData icon, ic_color, txt, todayCount) {
+  Widget iconContainer(
+    IconData icon,
+    ic_color,
+    txt,
+    todayCount,
+  ) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -128,7 +179,8 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
   }
 
   initDiscoverMode() async {
-    String mobile = await getKeyValue('mobile');
+    mobile = await getKeyValue('mobile');
+
     bool a;
     try {
       a = await Nearby().startAdvertising(
@@ -174,6 +226,10 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
       // platform exceptions like unable to start bluetooth or insufficient permissions
     }
     print('d-discover: $b');
+    setState(() {
+      //new
+      this.mobile = mobile;
+    });
   }
 
   disposeDiscoverMode() async {

@@ -4,9 +4,6 @@ import 'package:nearby/models/prefsModel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nearby/screens/home_screen.dart';
 import 'package:nearby/screens/register.dart';
-import 'package:nearby_connections/nearby_connections.dart';
-
-import 'constant.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

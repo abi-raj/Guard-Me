@@ -6,7 +6,7 @@ Future registerNumber(number, name) async {
   await FirebaseFirestore.instance
       .collection('users')
       .doc(number)
-      .set({"name": name});
+      .set({"name": name, "status": "neg"});
   return;
 }
 
@@ -25,3 +25,4 @@ Future registerNumber(number, name) async {
 
 Stream snapStream =
     FirebaseFirestore.instance.collection('alertusers').snapshots();
+Stream userStream = FirebaseFirestore.instance.collection('users').snapshots();
