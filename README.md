@@ -1,16 +1,24 @@
-# nearby
+# Guard-Me
 
-A new Flutter project.
+A mobile application built with flutter where users can login ,
+* Keep track of whomever they met in the past 14 days.
+* If any of them got affected by COVID, people whomever met the affected person will get alerted.<br/>
+This project is done for ***[Hack From Home 2021](https://hackclubskcet.tech/)*** Hackathon.<br/>
+Database used: **Firebase**<br>
+### Idea WorkFlow:
+<img src="https://user-images.githubusercontent.com/57340523/123610471-3da87200-d81e-11eb-8fab-ae0f31a174cf.png" width="1000" height="400">
 
-## Getting Started
+### Screenshots:
 
-This project is a starting point for a Flutter application.
+<div float="middle">
+ 
 
-A few resources to get you started if this is your first Flutter project:
+ <img src="https://user-images.githubusercontent.com/57340523/123611065-d5a65b80-d81e-11eb-8524-582e8517e0ad.png" width="250" height="500">
+ 
+  <img src="https://user-images.githubusercontent.com/57340523/123611279-13a37f80-d81f-11eb-82f2-032150acaeda.png" width="250" height="500">
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+  <img src="https://user-images.githubusercontent.com/57340523/123611603-654c0a00-d81f-11eb-958c-20b2dbb9b2bd.png" width="250" height="500">
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+</div>
+
+
